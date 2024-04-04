@@ -7,7 +7,6 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('municipio', '0010_alter_vencimiento_options_and_more'),
         ('persona', '0002_alter_persona_domicilio_alter_persona_localidad_and_more'),
         ('usuario', '0001_initial'),
     ]
