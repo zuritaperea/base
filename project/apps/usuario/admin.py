@@ -10,7 +10,7 @@ class UsuarioAdmin(UserAdmin):
     list_display = ('username', 'email', 'persona', 'is_active', 'is_staff', 'is_superuser',)
     fieldsets = (
         (None, {'fields': ('email', 'username', 'password')}),
-        ('Otros datos', {'fields': ('persona', 'municipio')}),
+        ('Otros datos', {'fields': ('persona',)}),
         (_('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         }),
