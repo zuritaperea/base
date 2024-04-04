@@ -19,3 +19,4 @@ Este proyecto pretende servir de base para otros proyectos, ya incluyendo alguna
 3. Creacion de una base de datos. (Preferentemente PostgreSQL)
 4. Configuracion del proyecto desde el archivo `.env`: `cp env.example .env`
 5. Correr migraciones. `python manage.py migrate`
+6. Si se quiere importar provincias/departamentos/localidades: `python manage.py importar_ubicaciones`
