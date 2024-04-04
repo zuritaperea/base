@@ -1,0 +1,55 @@
+{% extends 'admin/base.html' %}
+{% load i18n static jet_tags %}
+{% block html %}{{ block.super }}
+        <script src="{% url 'jet:jsi18n' %}"></script>
+{% endblock %}
+{% block extrastyle %}{{ block.super }}
+ <style>
+    img[src$="admin/img/icon-yes.gif"], img[src$="admin/img/icon-yes.svg"], img[src$="admin/img/icon-no.gif"], img[src$="admin/img/icon-no.svg"], img[src$="admin/img/icon-unknown.gif"], img[src$="admin/img/icon-unknown.svg"] {
+    display: unset;
+}</style> {% endblock %}
+
+{% block blockbots %}{{ block.super }}
+
+    <script src="{% static 'admin/js/vendor/jquery/jquery.js' as url %}{{ url|jet_append_version }}"
+            type="text/javascript"></script>
+    <script src="{% static 'admin/js/jquery.init.js' as url %}{{ url|jet_append_version }}"></script>
+{% endblock %}
+{% block userlinks %}
+    {% if site_url %}
+        <a href="{{ site_url }}">{% trans 'View site' %}</a> /
+    {% endif %}
+    {% if user.is_active and user.is_staff %}
+        {% url 'django-admindocs-docroot' as docsroot %}
+        {% if docsroot %}
+            <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
+        {% endif %}
+    {% endif %}
+    {% if user.has_usable_password %}
+        <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
+    {% endif %}
+      <a href="#" id="logout-link">{% trans 'Log out' %}</a>
+<script>
+       jQuery(document).ready(function() {
+        jQuery("#logout-link").click(function(event) {
+            event.preventDefault();
+            var form = jQuery("<form>");
+            form.attr({
+                method: "POST",
+                action: "{% url 'admin:logout' %}"
+            });
+            var csrfToken = jQuery("input[name='csrfmiddlewaretoken']").val();
+            var csrfInput = jQuery("<input>");
+            csrfInput.attr({
+                type: "hidden",
+                name: "csrfmiddlewaretoken",
+                value: csrfToken
+            });
+            form.append(csrfInput);
+            jQuery("body").append(form);
+            form.submit();
+        });
+    });
+</script>
+
+{% endblock %}
