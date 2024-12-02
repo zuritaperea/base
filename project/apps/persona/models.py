@@ -1,7 +1,4 @@
-from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
-
-from usuario.models import Usuario
 
 
 class Persona(models.Model):
