@@ -17,21 +17,21 @@ class RedSocial(models.Model):
     WHATSAPP = 'wsp'
     YOUTUBE = 'ytb'
     SNAPCHAT = 'snap'
-    GOOGLEPLUS = 'g+'
+    TIKTOK = 'tiktok'
     PINTEREST = 'pin'
 
     REDES = (
         (FACEBOOK, 'Facebook'),
         (INSTAGRAM, 'Instagram'),
         (LINKEDIN, 'Linkedin'),
-        (TWITTER, 'Twitter'),
+        (TWITTER, 'Twitter/X'),
         (WHATSAPP, 'WhatsApp'),
         (YOUTUBE, 'YouTube'),
         (SNAPCHAT, 'Snapchat'),
-        (GOOGLEPLUS, 'Google+'),
+        (TIKTOK, 'TikTok'),
         (PINTEREST, 'Pinterest')
     )
-    red_social = models.CharField(max_length=5, choices=REDES, verbose_name='Red Social')
+    red_social = models.CharField(max_length=6, choices=REDES, verbose_name='Red Social')
     url = models.URLField(max_length=200)
     content_type = models.ForeignKey(
         ContentType,
@@ -79,13 +79,11 @@ class Mail(models.Model):
         verbose_name = 'Correo electrónico'
         verbose_name_plural = 'Correos electrónicos'
 
-    RESERVA = 'reserva'
     CONSULTA = 'consulta'
     RECLAMO = 'reclamo'
     SUGERENCIA = 'sugerencia'
 
     TIPOS = (
-        (RESERVA, 'Reserva'),
         (CONSULTA, 'Consulta'),
         (RECLAMO, 'Reclamo'),
         (SUGERENCIA, 'Sugerencia')
